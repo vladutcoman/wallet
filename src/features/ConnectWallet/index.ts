@@ -1,1 +1,1 @@
-export { default as ConnectWalletInputArea } from './ConnectWalletInputArea/ConnectWalletInputArea';
+export { default as ConnectWalletForm } from './ConnectWalletForm/ConnectWalletForm';
