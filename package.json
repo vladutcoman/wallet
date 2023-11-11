@@ -13,6 +13,8 @@
   "dependencies": {
     "@multiversx/sdk-core": "^12.13.0",
     "@multiversx/sdk-wallet": "^4.2.0",
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
     "events": "^3.3.0",
     "path-browserify": "^0.0.0",
     "react": "18.2.0",
@@ -20,6 +22,8 @@
     "react-native-crypto": "^2.2.0",
     "react-native-level-fs": "^3.0.1",
     "react-native-randombytes": "^3.6.1",
+    "react-native-safe-area-context": "^4.7.4",
+    "react-native-screens": "^3.27.0",
     "readable-stream": "^1.0.33",
     "rn-nodeify": "^10.3.0",
     "stream-browserify": "^1.0.0",
