@@ -1,9 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-
-export interface ApiResponse<T> {
-  data: T;
-  error: boolean;
-}
+import { ApiResponse } from '.';
 
 export class ApiClient {
   private client = axios.create({
@@ -49,4 +45,6 @@ export class ApiClient {
   }
 }
 
-export default ApiClient;
+const apiClient = new ApiClient();
+
+export default apiClient;

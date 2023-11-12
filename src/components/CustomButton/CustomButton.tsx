@@ -13,7 +13,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   onPress,
 }) => {
   return (
-    <Button mt="$8" isDisabled={isDisabled} onPress={onPress}>
+    <Button
+      mt="$8"
+      opacity={isDisabled ? 0.5 : 1}
+      isDisabled={isDisabled}
+      onPress={onPress}
+    >
       <Text color="$white">{text}</Text>
     </Button>
   );

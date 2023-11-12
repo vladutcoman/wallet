@@ -13,6 +13,7 @@ const useConnectWalletForm = () => {
   const {
     control,
     setError,
+    clearErrors,
     getValues,
     formState: { errors },
   } = useForm<IWalletConnectForm>({
@@ -54,12 +55,22 @@ const useConnectWalletForm = () => {
   }, [submitting, getValues, fetchWalletData]);
 
   const handleOnSubmit = () => {
+    console.log('submitting');
     setSubmitting(true);
+  };
+
+  const onValueChange = (
+    newVal: string,
+    onChange: (...event: any[]) => void,
+  ) => {
+    clearErrors('phrase');
+    onChange(newVal);
   };
 
   return {
     errors,
     control,
+    onValueChange,
     isSubmitting: submitting,
     handleOnSubmit,
   };

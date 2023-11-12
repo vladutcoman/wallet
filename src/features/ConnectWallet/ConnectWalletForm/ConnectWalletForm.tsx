@@ -17,7 +17,7 @@ export interface IWalletConnectForm {
 }
 
 const ConnectWalletForm = () => {
-  const { errors, control, isSubmitting, handleOnSubmit } =
+  const { errors, control, isSubmitting, handleOnSubmit, onValueChange } =
     useConnectWalletForm();
 
   return (
@@ -31,16 +31,17 @@ const ConnectWalletForm = () => {
         }}
         render={({ field: { onChange, value } }) => (
           <Textarea
-            w="$full"
             h="$48"
-            backgroundColor="$warmGray100"
+            w="$full"
             softShadow="2"
+            backgroundColor="$warmGray100"
+            opacity={isSubmitting ? 0.5 : 1}
           >
             <TextareaInput
-              value={value}
               role="none"
+              value={value}
               placeholder="Add keyphrase"
-              onChangeText={newVal => onChange(newVal)}
+              onChangeText={newVal => onValueChange(newVal, onChange)}
             />
           </Textarea>
         )}
@@ -57,6 +58,7 @@ const ConnectWalletForm = () => {
         isDisabled={isSubmitting || !!errors.phrase}
         onPress={handleOnSubmit}
       />
+      {isSubmitting && <Text>Fetchig Data...</Text>}
     </VStack>
   );
 };

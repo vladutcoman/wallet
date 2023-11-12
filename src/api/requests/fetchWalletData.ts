@@ -1,7 +1,6 @@
 import { API_URL } from '@constants/index';
-import apiClient from '..';
+import { ApiResponse, apiClient } from '..';
 import { IWalletData } from './types';
-import { ApiResponse } from '@api/ApiClient';
 
 const getWalletData = async (
   address: string,
