@@ -1,18 +1,20 @@
+import FeatureWrapper from '@components/FeatureWrapper/FeatureWrapper';
+import { Text, VStack } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Button, Text } from 'react-native';
 
 const SendTransaction: React.FC = () => {
   const navigation = useNavigation();
+
   return (
-    <>
-      <Text>SendTransaction</Text>
-      <Button
-        // @ts-ignore
-        onPress={() => navigation.navigate('TransactionConfirmation')}
-        title="Go to TransactionConfimarion"
-      />
-    </>
+    <FeatureWrapper title="Welcome">
+      <VStack>
+        <Text>Address</Text>
+        <Text>
+          erd1q9xj4uqrfy9ge6n7lefn24qfa78pqd9q5dlc2fj8yv79smtdf9qqcglc34
+        </Text>
+      </VStack>
+    </FeatureWrapper>
   );
 };
 
