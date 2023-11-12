@@ -2,10 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { ISendTransactionForm } from '@features/SendTransaction/SendTransactionForm/SendTransactionForm';
+import { startTransaction } from '@utils/utils';
+import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 
 const useSendTransactionForm = () => {
   const navigation = useNavigation();
   const { walletStore } = useWalletStore();
+  const { address, secretKey } = walletStore;
 
   const {
     control,
@@ -36,10 +39,9 @@ const useSendTransactionForm = () => {
     }
 
     // Send transaction
-    console.log({ address: walletStore.address });
-
+    startTransaction(address, to, Number(amount), secretKey as UserSecretKey);
     // @ts-ignore
-    navigation.navigate('TransactionConfirmation');
+    navigation.navigate('TransactionConfimarion');
   };
 
   const onValueChange = (
