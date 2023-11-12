@@ -5,19 +5,17 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import TransactionsList from './TransactionsList/TransactionsList';
 import { useWalletStore } from '@store/walletStore/walletStore';
+import { formatBalance } from '@utils/utils';
 
 const Wallet: React.FC = () => {
   const navigation = useNavigation();
   const { walletStore } = useWalletStore();
   const { address, balance } = walletStore;
 
-  // TODO: format balance
-  const formattedBalance = `${balance} XeGLD`;
-
   return (
     <FeatureWrapper title="Welcome">
       <RowDataView label="Addres" value={address} />
-      <RowDataView label="Balance" value={formattedBalance} />
+      <RowDataView label="Balance" value={formatBalance(balance)} />
       <CustomButton
         text="Send Transaction"
         // @ts-ignore

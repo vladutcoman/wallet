@@ -55,7 +55,6 @@ const useConnectWalletForm = () => {
   }, [submitting, getValues, fetchWalletData]);
 
   const handleOnSubmit = () => {
-    console.log('submitting');
     setSubmitting(true);
   };
 
