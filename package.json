@@ -21,6 +21,7 @@
     "axios": "^1.6.1",
     "events": "^3.3.0",
     "mobx": "^6.11.0",
+    "mobx-react-lite": "^4.0.5",
     "path-browserify": "^0.0.0",
     "react": "18.2.0",
     "react-hook-form": "^7.48.2",

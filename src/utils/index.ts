@@ -1,0 +1,1 @@
+export { getAddressFromMnemonic } from './utils';
