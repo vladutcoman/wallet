@@ -1,8 +1,8 @@
 import { API_URL } from '@constants/index';
 import { ITransactionData } from './types';
-import { ApiResponse, apiClient } from '..';
+import apiClient, { ApiResponse } from '@api/ApiClient';
 
-const getWalletData = async (
+const fetchTransactionData = async (
   address: string,
 ): Promise<ApiResponse<ITransactionData[]>> => {
   return apiClient.get<ITransactionData[]>(
@@ -10,4 +10,4 @@ const getWalletData = async (
   );
 };
 
-export default getWalletData;
+export default fetchTransactionData;

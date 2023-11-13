@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ConnectWalletForm } from '@features/ConnectWallet/index';
 import FeatureWrapper from '@components/FeatureWrapper/FeatureWrapper';
+import ConnectWalletForm from './ConnectWalletForm/ConnectWalletForm';
 
 const ConnectWallet: React.FC = () => {
   return (

@@ -27,6 +27,7 @@ export const brodcastTransaction = async (
 
     return txHash;
   } catch (error) {
+    console.log(error);
     console.error('Could not broadcast transaction');
     return '';
   }
@@ -58,6 +59,8 @@ const setNonce = (sender: Account, tx: Transaction) => {
    * This is a hack to prevent this error:
    * "invalid transaction lowerNonceInTx: true, veryHighNonceInTx: false"
    */
+  sender.getNonceThenIncrement();
+  sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();

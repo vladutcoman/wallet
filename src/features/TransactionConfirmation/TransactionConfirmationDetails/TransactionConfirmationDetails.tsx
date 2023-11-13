@@ -6,13 +6,12 @@ import React from 'react';
 const TransactionConfirmationDetails = () => {
   const { transactionStore } = useTransactionStore();
   const { amount, receiverAddress, transactionHash } = transactionStore;
-  console.log({ amount, receiverAddress, transactionHash });
 
   return (
     <VStack space="md">
       <VStack alignItems="center">
         <Text color="$black" fontSize="$lg" fontWeight="$bold">
-          {amount}
+          {`${amount} EeGLD`}
         </Text>
         <RowDataView label="succesfully send to" value={receiverAddress} />
       </VStack>

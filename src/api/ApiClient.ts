@@ -1,7 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { ApiResponse } from '.';
 
-export class ApiClient {
+export interface ApiResponse<T> {
+  data: T;
+  error: boolean;
+}
+
+class ApiClient {
   client = axios.create({
     headers: {
       Accept: 'application/json',

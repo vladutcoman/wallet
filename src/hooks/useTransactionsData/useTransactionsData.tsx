@@ -1,8 +1,9 @@
 import { useReducer } from 'react';
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { useCallback, useEffect } from 'react';
-import { fetchTransactionData } from '@api/index';
+
 import { SET_PARTIAL_DATA, transactionsReducer } from './reducer';
+import fetchTransactionData from '@api/requests/fetchTransactionData';
 
 const initialState = {
   transactions: [],
