@@ -1,5 +1,6 @@
 import RowDataView from '@components/RowDataView/RowDataView';
 import { Divider, VStack } from '@gluestack-ui/themed';
+import { formatBalance } from '@utils/utils';
 import React from 'react';
 
 type TransactionListItemProps = {
@@ -15,7 +16,11 @@ const TransactionListItem: React.FC<TransactionListItemProps> = ({
 }) => {
   return (
     <VStack p="$4" borderWidth="$1" rounded="$lg" borderColor="$blue400">
-      <RowDataView labelBold label="Amount" value={amount} />
+      <RowDataView
+        labelBold
+        label="Amount"
+        value={formatBalance(Number(amount))}
+      />
       <Divider my="$1" />
       <RowDataView labelBold label="Sender" value={sender} />
       <Divider my="$1" />
