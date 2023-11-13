@@ -3,9 +3,9 @@ import { IWalletConnectForm } from '@features/ConnectWallet/ConnectWalletForm/Co
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { getAddressFromMnemonic } from '@utils/utils';
 import getWalletData from '@api/requests/fetchWalletData';
 import { UserSecretKey } from '@multiversx/sdk-wallet/out';
+import { getAccountData } from '@services/accountService';
 
 const useConnectWalletForm = () => {
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ const useConnectWalletForm = () => {
 
   const fetchWalletData = useCallback(
     async (mnemonic: string) => {
-      const { address, secretKey } = getAddressFromMnemonic(mnemonic);
+      const { address, secretKey } = getAccountData(mnemonic);
       if (address === '') {
         setError('phrase', { message: 'Invalid phrase' });
         setSubmitting(false);

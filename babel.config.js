@@ -11,6 +11,7 @@ module.exports = {
           '@features': './src/features',
           '@hooks': './src/hooks',
           '@navigation': './src/navigation',
+          '@services': './src/services',
           '@store': './src/store',
           '@utils': './src/utils',
         },

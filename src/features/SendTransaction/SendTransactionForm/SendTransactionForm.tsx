@@ -49,7 +49,7 @@ const SendTransactionForm: React.FC = () => {
       />
       {errors.amount && (
         <Text h="$6" color="$red700">
-          Please insert a valid amount
+          {errors.amount.message || 'Please insert a valid amount'}
         </Text>
       )}
       <CustomButton

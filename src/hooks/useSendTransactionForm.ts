@@ -1,14 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
+import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { ISendTransactionForm } from '@features/SendTransaction/SendTransactionForm/SendTransactionForm';
-import { startTransaction } from '@utils/utils';
-import { UserSecretKey } from '@multiversx/sdk-wallet/out';
+import { brodcastTransaction } from '@services/transactionService';
+import { useTransactionStore } from '@store/transactionStore/transactionStore';
 
 const useSendTransactionForm = () => {
   const navigation = useNavigation();
   const { walletStore } = useWalletStore();
+  const { transactionStore } = useTransactionStore();
+
   const { address, secretKey } = walletStore;
+  const { setTransactionData } = transactionStore;
 
   const {
     control,
@@ -38,8 +42,23 @@ const useSendTransactionForm = () => {
       return;
     }
 
-    // Send transaction
-    startTransaction(address, to, Number(amount), secretKey as UserSecretKey);
+    submitTransaction(to, Number(amount));
+  };
+
+  const submitTransaction = async (to: string, amount: number) => {
+    const txHash = await brodcastTransaction(
+      address,
+      to,
+      Number(amount),
+      secretKey as UserSecretKey,
+    );
+
+    if (txHash === '') {
+      setError('amount', { message: 'Error while sending the transaction' });
+      return;
+    }
+
+    setTransactionData(amount, txHash, to);
     // @ts-ignore
     navigation.navigate('TransactionConfimarion');
   };

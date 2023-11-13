@@ -26,7 +26,6 @@ class WalletStore {
   };
 
   private _setBalance = (balance: string) => {
-    // TODO: Check the balance if needs processed
     this.balance = Number(balance);
   };
 
