@@ -60,7 +60,7 @@ const useSendTransactionForm = () => {
 
     setTransactionData(amount, txHash, to);
     // @ts-ignore
-    navigation.navigate('TransactionConfimarion');
+    navigation.navigate('TransactionConfirmation');
   };
 
   const onValueChange = (

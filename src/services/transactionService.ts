@@ -64,7 +64,6 @@ const setNonce = (sender: Account, tx: Transaction) => {
   sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
   tx.setNonce(sender.nonce);
 };
 

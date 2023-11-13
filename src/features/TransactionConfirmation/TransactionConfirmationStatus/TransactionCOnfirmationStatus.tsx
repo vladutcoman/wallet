@@ -7,36 +7,14 @@ import {
   VStack,
   View,
 } from '@gluestack-ui/themed';
-import { getTransactionWatcher } from '@services/networkProvidersService';
-import { useTransactionStore } from '@store/transactionStore/transactionStore';
-import React, { useEffect, useState, useCallback } from 'react';
+import useTransactionWatcher, {
+  ConfirmationStatus,
+} from '@hooks/useTransactionWatcher';
 
-enum ConfirmationStatus {
-  PENDING = 'pending',
-  CONFIRMED = 'confirmed',
-  FAILED = 'failed',
-}
+import React from 'react';
 
 const TransactionConfirmationStatus = () => {
-  const [status, setStatus] = useState(ConfirmationStatus.PENDING);
-  const { transactionStore } = useTransactionStore();
-  const { transactionHash } = transactionStore;
-
-  const watchTransaction = useCallback(async () => {
-    const watcher = getTransactionWatcher();
-    const transactionOnNetwork = await watcher.awaitCompleted({
-      getHash: () => {
-        return { hex: () => transactionHash };
-      },
-    });
-    console.log({ transactionOnNetwork });
-    // setStatus(status);
-    setStatus(ConfirmationStatus.CONFIRMED);
-  }, [transactionHash]);
-
-  useEffect(() => {
-    watchTransaction();
-  }, [watchTransaction]);
+  const { status } = useTransactionWatcher();
 
   if (status === ConfirmationStatus.PENDING) {
     return (
