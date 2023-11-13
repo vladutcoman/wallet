@@ -48,18 +48,4 @@ export class ApiClient {
 
 const apiClient = new ApiClient();
 
-apiClient.client.interceptors.request.use(
-  config => {
-    // Log the whole request, including data and params
-    console.log({ config });
-
-    // Don't forget to return the config, otherwise, the request won't proceed
-    return config;
-  },
-  error => {
-    // Handle request error
-    return Promise.reject(error);
-  },
-);
-
 export default apiClient;

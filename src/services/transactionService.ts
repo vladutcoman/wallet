@@ -70,8 +70,6 @@ const setNonce = (sender: Account, tx: Transaction) => {
 
 const signTransaction = async (tx: Transaction, secretKey: UserSecretKey) => {
   try {
-    console.log({ tx: tx.getData(), secretKey });
-
     const signer = new UserSigner(secretKey);
     const serializedTransaction = tx.serializeForSigning();
     const transactionSignature = await signer.sign(serializedTransaction);

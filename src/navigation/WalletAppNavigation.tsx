@@ -13,12 +13,12 @@ const Stack = createNativeStackNavigator();
 const WalletAppNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SendTransaction">
+      <Stack.Navigator initialRouteName="TransactionConfirmation">
         <Stack.Screen name="ConnectWallet" component={ConnectWallet} />
         <Stack.Screen name="Wallet" component={Wallet} />
         <Stack.Screen name="SendTransaction" component={SendTransaction} />
         <Stack.Screen
-          name="TransactionConfimarion"
+          name="TransactionConfirmation"
           component={TransactionConfirmation}
         />
       </Stack.Navigator>
