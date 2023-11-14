@@ -1,7 +1,8 @@
-import RowDataView from '@components/RowDataView/RowDataView';
-import { Divider, VStack } from '@gluestack-ui/themed';
-import { formatBalance } from '@utils/utils';
 import React from 'react';
+import { Divider, VStack } from '@gluestack-ui/themed';
+
+import RowDataView from '@components/RowDataView/RowDataView';
+import { formatBalance } from '@utils/utils';
 
 type TransactionListItemProps = {
   amount: string;

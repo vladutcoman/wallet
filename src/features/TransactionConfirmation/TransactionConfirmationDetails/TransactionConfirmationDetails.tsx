@@ -1,7 +1,8 @@
-import RowDataView from '@components/RowDataView/RowDataView';
-import { Text, VStack } from '@gluestack-ui/themed';
-import { useTransactionStore } from '@store/transactionStore/transactionStore';
 import React from 'react';
+import { Text, VStack } from '@gluestack-ui/themed';
+
+import { useTransactionStore } from '@store/transactionStore/transactionStore';
+import RowDataView from '@components/RowDataView/RowDataView';
 
 const TransactionConfirmationDetails = () => {
   const { transactionStore } = useTransactionStore();
@@ -13,7 +14,7 @@ const TransactionConfirmationDetails = () => {
         <Text color="$black" fontSize="$lg" fontWeight="$bold">
           {`${amount} EeGLD`}
         </Text>
-        <RowDataView label="succesfully send to" value={receiverAddress} />
+        <RowDataView label="Receiver address" value={receiverAddress} />
       </VStack>
       <RowDataView label="TX Hash" value={transactionHash} />
     </VStack>

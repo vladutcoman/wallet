@@ -1,5 +1,5 @@
-import { Text, VStack } from '@gluestack-ui/themed';
 import React from 'react';
+import { Text, VStack } from '@gluestack-ui/themed';
 
 type RowDataViewProps = {
   label: string;

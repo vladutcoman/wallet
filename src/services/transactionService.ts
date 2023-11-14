@@ -1,10 +1,11 @@
+import { UserSecretKey, UserSigner } from '@multiversx/sdk-wallet/out';
 import {
   Account,
   TokenTransfer,
   Transaction,
   TransactionPayload,
 } from '@multiversx/sdk-core/out';
-import { UserSecretKey, UserSigner } from '@multiversx/sdk-wallet/out';
+
 import { proxyNetworkProvider } from './networkProvidersService';
 
 export const brodcastTransaction = async (
@@ -59,6 +60,7 @@ const setNonce = (sender: Account, tx: Transaction) => {
    * This is a hack to prevent this error:
    * "invalid transaction lowerNonceInTx: true, veryHighNonceInTx: false"
    */
+  sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();
   sender.getNonceThenIncrement();

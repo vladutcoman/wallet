@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { getTransactionWatcher } from '@services/networkProvidersService';
 import { useTransactionStore } from '@store/transactionStore/transactionStore';
 

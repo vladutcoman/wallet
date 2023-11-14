@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { UserSecretKey } from '@multiversx/sdk-wallet/out';
-import { useWalletStore } from '@store/walletStore/walletStore';
+
 import { ISendTransactionForm } from '@features/SendTransaction/SendTransactionForm/SendTransactionForm';
 import { brodcastTransaction } from '@services/transactionService';
 import { useTransactionStore } from '@store/transactionStore/transactionStore';
+import { useWalletStore } from '@store/walletStore/walletStore';
 
 const useSendTransactionForm = () => {
+  const [submitting, setSubmitting] = useState(false);
   const navigation = useNavigation();
   const { walletStore } = useWalletStore();
   const { transactionStore } = useTransactionStore();
@@ -28,6 +31,7 @@ const useSendTransactionForm = () => {
   });
 
   const handleOnSubmit = () => {
+    setSubmitting(true);
     const { amount, to } = getValues();
 
     if (amount === '' || !Number.isFinite(Number(amount))) {
@@ -39,6 +43,7 @@ const useSendTransactionForm = () => {
     }
 
     if (errors.amount || errors.to) {
+      setSubmitting(false);
       return;
     }
 
@@ -52,6 +57,8 @@ const useSendTransactionForm = () => {
       Number(amount),
       secretKey as UserSecretKey,
     );
+
+    setSubmitting(false);
 
     if (txHash === '') {
       setError('amount', { message: 'Error while sending the transaction' });
@@ -75,6 +82,7 @@ const useSendTransactionForm = () => {
   return {
     errors,
     control,
+    submitting,
     onValueChange,
     handleOnSubmit,
   };

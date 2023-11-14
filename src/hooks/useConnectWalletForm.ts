@@ -1,15 +1,16 @@
+import { useCallback, useEffect, useState } from 'react';
+import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 import { useForm } from 'react-hook-form';
+
 import { IWalletConnectForm } from '@features/ConnectWallet/ConnectWalletForm/ConnectWalletForm';
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { useNavigation } from '@react-navigation/native';
-import { useCallback, useEffect, useState } from 'react';
 import getWalletData from '@api/requests/fetchWalletData';
-import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 import { getAccountData } from '@services/accountService';
 
 const useConnectWalletForm = () => {
-  const navigation = useNavigation();
   const [submitting, setSubmitting] = useState(false);
+  const navigation = useNavigation();
   const { walletStore } = useWalletStore();
   const {
     control,

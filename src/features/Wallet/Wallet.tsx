@@ -1,11 +1,12 @@
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import CustomButton from '@components/CustomButton/CustomButton';
 import FeatureWrapper from '@components/FeatureWrapper/FeatureWrapper';
 import RowDataView from '@components/RowDataView/RowDataView';
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import TransactionsList from './TransactionsList/TransactionsList';
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { formatBalance } from '@utils/utils';
+import TransactionsList from './TransactionsList/TransactionsList';
 
 const Wallet: React.FC = () => {
   const navigation = useNavigation();

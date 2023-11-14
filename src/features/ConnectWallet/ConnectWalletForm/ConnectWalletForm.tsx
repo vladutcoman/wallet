@@ -1,7 +1,6 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
-import useConnectWalletForm from '@hooks/useConnectWalletForm';
 import {
   Box,
   Text,
@@ -9,6 +8,8 @@ import {
   TextareaInput,
   VStack,
 } from '@gluestack-ui/themed';
+
+import useConnectWalletForm from '@hooks/useConnectWalletForm';
 import { MNEMONIC_LENGTH } from '@constants/index';
 import CustomButton from '@components/CustomButton/CustomButton';
 
@@ -34,6 +35,7 @@ const ConnectWalletForm = () => {
             h="$48"
             w="$full"
             softShadow="2"
+            isDisabled={isSubmitting}
             backgroundColor="$warmGray100"
             opacity={isSubmitting ? 0.5 : 1}
           >

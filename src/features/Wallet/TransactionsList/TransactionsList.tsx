@@ -1,8 +1,8 @@
 import React from 'react';
 import { Spinner, Text, VStack } from '@gluestack-ui/themed';
 
-import TransactionListItem from './TransactionListItem/TransactionListItem';
 import useTransactionsData from '@hooks/useTransactionsData/useTransactionsData';
+import TransactionListItem from './TransactionListItem/TransactionListItem';
 
 const TransactionsList: React.FC = () => {
   const { loading, error, transactions } = useTransactionsData();

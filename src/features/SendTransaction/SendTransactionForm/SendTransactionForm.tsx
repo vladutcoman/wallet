@@ -1,7 +1,8 @@
-import useSendTransactionForm from '@hooks/useSendTransactionForm';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { Text, VStack } from '@gluestack-ui/themed';
+
+import useSendTransactionForm from '@hooks/useSendTransactionForm';
 import CustomButton from '@components/CustomButton/CustomButton';
 import LabeledInput from '@components/LabeledInput/LabeledInput';
 
@@ -11,7 +12,7 @@ export interface ISendTransactionForm {
 }
 
 const SendTransactionForm: React.FC = () => {
-  const { errors, control, handleOnSubmit, onValueChange } =
+  const { errors, control, submitting, handleOnSubmit, onValueChange } =
     useSendTransactionForm();
 
   return (
@@ -38,6 +39,7 @@ const SendTransactionForm: React.FC = () => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <LabeledInput
+            isDisabled={submitting}
             label="Amount"
             value={value}
             onChange={newVal =>
@@ -53,7 +55,7 @@ const SendTransactionForm: React.FC = () => {
         </Text>
       )}
       <CustomButton
-        isDisabled={!!errors.to || !!errors.amount}
+        isDisabled={!!errors.to || !!errors.amount || submitting}
         text="Send Transaction"
         onPress={handleOnSubmit}
       />
