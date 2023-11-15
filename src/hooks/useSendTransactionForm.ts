@@ -22,6 +22,7 @@ const useSendTransactionForm = () => {
     setError,
     clearErrors,
     getValues,
+    resetField,
     formState: { errors },
   } = useForm<ISendTransactionForm>({
     defaultValues: {
@@ -67,8 +68,13 @@ const useSendTransactionForm = () => {
     }
 
     setTransactionData(amount, txHash, to);
-    // @ts-ignore
-    navigation.navigate('TransactionConfirmation');
+    navigation.reset({
+      index: 0,
+      // @ts-ignore
+      routes: [{ name: 'TransactionConfirmation' }],
+    });
+    resetField('amount');
+    resetField('to');
   };
 
   const onValueChange = (
