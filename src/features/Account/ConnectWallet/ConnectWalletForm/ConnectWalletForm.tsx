@@ -56,7 +56,7 @@ const ConnectWalletForm = () => {
       )}
       {!errors.phrase && <Box h="$6" />}
       <CustomButton
-        text="Create New Wallet"
+        text="Import Wallet"
         isDisabled={isSubmitting || !!errors.phrase}
         onPress={handleOnSubmit}
       />

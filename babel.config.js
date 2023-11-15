@@ -14,6 +14,7 @@ module.exports = {
           '@services': './src/services',
           '@store': './src/store',
           '@utils': './src/utils',
+          '@ledgerhq/devices/hid-framing': '@ledgerhq/devices/lib-es/hid-framing',
         },
       },
     ],
