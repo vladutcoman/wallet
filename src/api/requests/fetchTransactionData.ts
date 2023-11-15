@@ -7,6 +7,7 @@ const fetchTransactionData = async (
 ): Promise<ApiResponse<ITransactionData[]>> => {
   return apiClient.get<ITransactionData[]>(
     `${API_URL}/accounts/${address}/transactions`,
+    { size: 10 },
   );
 };
 

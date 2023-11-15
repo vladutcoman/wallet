@@ -37,9 +37,7 @@ const useTransactionsData = () => {
         },
       });
     } else {
-      const last10Transactions = transactionsResponse.data
-        .sort((a, b) => b.timestamp - a.timestamp)
-        .slice(0, 10);
+      const last10Transactions = transactionsResponse.data;
       dispatch({
         type: SET_PARTIAL_DATA,
         payload: {

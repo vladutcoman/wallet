@@ -36,6 +36,7 @@ const useConnectWalletForm = () => {
       const walletDataResponse = await getWalletData(address);
       if (!walletDataResponse.error) {
         walletStore.setWalletData(
+          walletDataResponse.data.nonce,
           walletDataResponse.data.address,
           walletDataResponse.data.balance,
           secretKey as UserSecretKey,

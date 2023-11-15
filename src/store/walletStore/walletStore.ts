@@ -3,8 +3,9 @@ import { makeAutoObservable } from 'mobx';
 import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 
 class WalletStore {
-  address = '';
+  nonce = 0;
   balance = 0;
+  address = '';
   secretKey: UserSecretKey | null = null;
 
   constructor() {
@@ -12,13 +13,19 @@ class WalletStore {
   }
 
   setWalletData = (
+    nonce: number,
     address: string,
     balance: string,
     secretKey: UserSecretKey,
   ) => {
+    this._setNonce(nonce);
     this._setAddress(address);
     this._setBalance(balance);
-    this.setSecretKey(secretKey);
+    this._setSecretKey(secretKey);
+  };
+
+  private _setNonce = (nonce: number) => {
+    this.nonce = nonce;
   };
 
   private _setAddress = (address: string) => {
@@ -29,7 +36,7 @@ class WalletStore {
     this.balance = Number(balance);
   };
 
-  setSecretKey = (secretKey: UserSecretKey) => {
+  private _setSecretKey = (secretKey: UserSecretKey) => {
     this.secretKey = secretKey;
   };
 }

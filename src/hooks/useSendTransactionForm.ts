@@ -14,7 +14,7 @@ const useSendTransactionForm = () => {
   const { walletStore } = useWalletStore();
   const { transactionStore } = useTransactionStore();
 
-  const { address, secretKey } = walletStore;
+  const { address, secretKey, nonce } = walletStore;
   const { setTransactionData } = transactionStore;
 
   const {
@@ -52,6 +52,7 @@ const useSendTransactionForm = () => {
 
   const submitTransaction = async (to: string, amount: number) => {
     const txHash = await brodcastTransaction(
+      nonce,
       address,
       to,
       Number(amount),

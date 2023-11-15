@@ -9,6 +9,7 @@ import {
 import { proxyNetworkProvider } from './networkProvidersService';
 
 export const brodcastTransaction = async (
+  nonce: number,
   senderAddress: string,
   receiverAddress: string,
   value: number,
@@ -23,6 +24,7 @@ export const brodcastTransaction = async (
       receiver,
       value,
       secretKey as UserSecretKey,
+      nonce,
     );
     let txHash = await proxyNetworkProvider.sendTransaction(tx);
 
@@ -39,6 +41,7 @@ const buildTransaction = async (
   receiver: Account,
   value: number,
   secretKey: UserSecretKey,
+  nonce: number,
 ) => {
   const tx = new Transaction({
     data: new TransactionPayload(''),
@@ -49,27 +52,10 @@ const buildTransaction = async (
     chainID: 'T',
   });
 
-  setNonce(sender, tx);
+  tx.setNonce(nonce);
   signTransaction(tx, secretKey);
 
   return tx;
-};
-
-const setNonce = (sender: Account, tx: Transaction) => {
-  /**
-   * This is a hack to prevent this error:
-   * "invalid transaction lowerNonceInTx: true, veryHighNonceInTx: false"
-   */
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  sender.getNonceThenIncrement();
-  tx.setNonce(sender.nonce);
 };
 
 const signTransaction = async (tx: Transaction, secretKey: UserSecretKey) => {
