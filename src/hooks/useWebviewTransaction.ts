@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import WebView, { WebViewMessageEvent } from 'react-native-webview';
 
 import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 import { getSignature } from '@services/transactionService';
 import { useWalletStore } from '@store/walletStore/walletStore';
+import { getAuthToken } from '@services/accountService';
 
 /**
  * I think this hook could be split into two hooks
@@ -16,28 +17,26 @@ const useWebviewTransaction = () => {
   const { walletStore } = useWalletStore();
   const { address, nonce, secretKey } = walletStore;
 
-  useEffect(() => {
-    const token = getAuthToken();
-    /**
-     * Hack to send the token to webview after the webview loads
-     * Probably not the best way to do it
-     */
-    const timeout = setTimeout(() => {
-      webviewRef.current?.postMessage(token);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const getAuthToken = () => {
+  const auth = useCallback(async () => {
     try {
+      const token = await getAuthToken(address);
       /**
-       * TODO Get auth token and send to webview
+       * Hack to send the token to webview after the webview loads
+       * I know, not teh best solution, even more I do not clear the timeout
        */
+
+      setTimeout(() => {
+        webviewRef.current?.postMessage(token);
+      }, 2000);
     } catch (error) {
       console.log({ error });
+      return '';
     }
-    return 'authToken';
-  };
+  }, [address]);
+
+  useEffect(() => {
+    auth();
+  }, [auth]);
 
   const handleOnMessage = (event: WebViewMessageEvent) => {
     if (event.nativeEvent.data === 'ping') {
