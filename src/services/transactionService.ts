@@ -7,6 +7,7 @@ import {
 } from '@multiversx/sdk-core/out';
 
 import { proxyNetworkProvider } from './networkProvidersService';
+import { MOCK_RECEIVER } from '@constants/index';
 
 export const brodcastTransaction = async (
   nonce: number,
@@ -30,8 +31,32 @@ export const brodcastTransaction = async (
 
     return txHash;
   } catch (error) {
-    console.log(error);
     console.error('Could not broadcast transaction');
+    return '';
+  }
+};
+
+export const getSignature = async (
+  nonce: number,
+  senderAddress: string,
+  value: number,
+  secretKey: UserSecretKey,
+) => {
+  try {
+    const sender = new Account({ bech32: () => senderAddress });
+    const receiver = new Account({ bech32: () => MOCK_RECEIVER });
+
+    const tx = await buildTransaction(
+      sender,
+      receiver,
+      value,
+      secretKey as UserSecretKey,
+      nonce,
+    );
+
+    return tx.getSignature().toString('hex');
+  } catch (error) {
+    console.error('Could not get signature');
     return '';
   }
 };
