@@ -11,6 +11,8 @@ export const getAccountData = (mnemonic: string) => {
   try {
     secretKey = getSecretKey(mnemonic);
     const userWallet = UserWallet.fromSecretKey({ secretKey, password: '' });
+    console.log({ userWallet: userWallet.toJSON() });
+
     address = userWallet.toJSON().bech32;
   } catch (error) {
     console.error(error);
