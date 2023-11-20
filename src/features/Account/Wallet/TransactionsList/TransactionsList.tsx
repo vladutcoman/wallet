@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Spinner, Text, VStack } from '@gluestack-ui/themed';
 
 import useTransactionsData from '@hooks/useTransactionsData/useTransactionsData';
-import TransactionListItem from './TransactionListItem/TransactionListItem';
+
+const TransactionItem = lazy(
+  () => import('./TransactionListItem/TransactionListItem'),
+);
 
 const TransactionsList: React.FC = () => {
   const { loading, error, transactions } = useTransactionsData();
-
-  if (loading) {
-    return <Spinner mt="$20" size="large" />;
-  }
 
   if (error) {
     return (
@@ -20,19 +19,21 @@ const TransactionsList: React.FC = () => {
   }
 
   return (
-    <>
-      <Text>Last 10 transaction for account:</Text>
-      <VStack space="lg">
-        {transactions.map((item, index) => (
-          <TransactionListItem
-            key={index}
-            receiver={item.receiver}
-            sender={item.sender}
-            amount={item.value}
-          />
-        ))}
-      </VStack>
-    </>
+    !loading && (
+      <Suspense fallback={<Spinner mt="$20" size="large" />}>
+        <Text>Last 10 transaction for account:</Text>
+        <VStack space="lg">
+          {transactions.map((item, index) => (
+            <TransactionItem
+              key={index}
+              receiver={item.receiver}
+              sender={item.sender}
+              amount={item.value}
+            />
+          ))}
+        </VStack>
+      </Suspense>
+    )
   );
 };
 

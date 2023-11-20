@@ -1,6 +1,8 @@
 # Wallet application
 
-This is an wallet application connected to the MultiverX testnet.
+## Overall flow & description
+
+This is a wallet application connected to the MultiverX testnet.
 Features Implemented:
 - Connect to account using the mnemonics
 - See account data:
@@ -9,6 +11,27 @@ Features Implemented:
   - Last 10 transactions
 - Send transaction
 - See sent transaction status
+- Wrote 3 test suites
+  - One utils simple method
+  - One custom hook
+  - One Component
+
+## Tech details
+- Used gluestack-ui for UI Library. For me, it was much easier and quicker to use it, but I can definitely work without it if needed
+- Used axios for APIs requests. Here, I have made an ApiClient that wraps the axios lib and handles errors
+- Used MobX for state management. Used it for speed up, I am comfortable with Redux too
+- Used rn-nodeify to solve NodeJS libs not present in the client libs
+- Used testing-library & Jest for testing
+- Used react-native-webview for the webview feature
+- Used react-form-hooks handling form management
+
+## Improvements
+- The first improvement I see is how I handle the wallet data (especially the secret key). There may be better ways to do it
+- Write tests for all the components & functions
+- Read the URLs and other environment-based constants from somewhere, don't hardcode them here
+- Make the UI more prettier - maybe choose a better color scheme, do more styling, and use some effects & animations.
+- Verify the application performance - for sure are places where we can use React.memo, useCallback, useMemo, and lazy loadings with suspense in the app
+- Create an Error Boundary component (or more -> per feature maybe)
 
 
 # Getting Started
