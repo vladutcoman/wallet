@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 import { useForm } from 'react-hook-form';
 
-import { IWalletConnectForm } from '@features/ConnectWallet/ConnectWalletForm/ConnectWalletForm';
+import { IWalletConnectForm } from '@features/Account/ConnectWallet/ConnectWalletForm/ConnectWalletForm';
 import { useWalletStore } from '@store/walletStore/walletStore';
 import { useNavigation } from '@react-navigation/native';
 import getWalletData from '@api/requests/fetchWalletData';

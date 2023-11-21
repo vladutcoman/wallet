@@ -20,15 +20,15 @@ class TransactionStore {
     this._setReceiverAddress(receiverAddress);
   };
 
-  _setAmount = (amount: number) => {
+  private _setAmount = (amount: number) => {
     this.amount = amount;
   };
 
-  _setTransactionHash = (transactionHash: string) => {
+  private _setTransactionHash = (transactionHash: string) => {
     this.transactionHash = transactionHash;
   };
 
-  _setReceiverAddress = (receiverAddress: string) => {
+  private _setReceiverAddress = (receiverAddress: string) => {
     this.receiverAddress = receiverAddress;
   };
 }

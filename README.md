@@ -1,7 +1,11 @@
 # Wallet application
 
-This is an wallet application connected to the MultiverX testnet.
+## Overall flow & description
+
+This is a wallet application connected to the MultiverX testnet.
 Features Implemented:
+
+### Challenge 1
 - Connect to account using the mnemonics
 - See account data:
   - Address
@@ -9,6 +13,43 @@ Features Implemented:
   - Last 10 transactions
 - Send transaction
 - See sent transaction status
+- Wrote 3 test suites
+  - One utils simple method
+  - One custom hook
+  - One Component
+
+### Challenge 2
+- Add Bottom Navigation
+- Load the dapp in the Webview and establish the communication channel
+- Send the auth token to the dapp (wrong one for the moment)
+- Implement a confirmation modal
+- Listen to the ping transaction and send a signature if the user confirms the transactions
+- Not finished: 
+  - Get the correct auth token
+  - Send & sign the transaction from the dapp
+  - Test the flow and see if is something to improve
+
+## Tech details
+- Used gluestack-ui for UI Library. For me, it was much easier and quicker to use it, but I can definitely work without it if needed
+- Used axios for APIs requests. Here, I have made an ApiClient that wraps the axios lib and handles errors
+- Used MobX for state management. Used it for speed up, I am comfortable with Redux too
+- Used rn-nodeify to solve NodeJS libs not present in the client libs
+- Used testing-library & Jest for testing
+- Used react-native-webview for the webview feature. With this, I have made the comunication channel between the dapp and wallet - using postMessage and adding an event listener in the dapp
+- Used react-form-hooks handling form management - it helped especially with the validation
+- Used sdk-core, sdk-wallet and sdk-network providers for importing the ccount from the mnemonics and handling the transactions (sign and send)
+- Used sdk-native-auth-client for getting the authToken - no completed, I  do ot find out how to sign the signableMessage needed
+
+
+
+## Improvements
+- The first improvement I see is how I handle the wallet data (especially the secret key). There may be better ways to do it
+- Anything related to the web3 stuff -> I should research more for best practices in that area
+- Write tests for all the components & functions
+- Read the URLs and other environment-based constants from somewhere, don't hardcode them here
+- Make the UI more prettier - maybe choose a better color scheme, do more styling, and use some effects & animations.
+- Verify the application performance - for sure are places where we can use React.memo, useCallback, useMemo, and lazy loadings with suspense in the app
+- Create an Error Boundary component (a general one or more -> per feature maybe)
 
 
 # Getting Started

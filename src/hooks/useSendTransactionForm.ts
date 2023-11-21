@@ -3,10 +3,10 @@ import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { UserSecretKey } from '@multiversx/sdk-wallet/out';
 
-import { ISendTransactionForm } from '@features/SendTransaction/SendTransactionForm/SendTransactionForm';
 import { brodcastTransaction } from '@services/transactionService';
 import { useTransactionStore } from '@store/transactionStore/transactionStore';
 import { useWalletStore } from '@store/walletStore/walletStore';
+import { ISendTransactionForm } from '@features/Account/SendTransaction/SendTransactionForm/SendTransactionForm';
 
 const useSendTransactionForm = () => {
   const [submitting, setSubmitting] = useState(false);
